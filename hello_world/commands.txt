@@ -1,5 +1,0 @@
-go get -u github.com/aws/aws-lambda-go
---before build binary to upload to AWS
-$Env:GOOS = "linux" 
---buiild
-go build main.go
