@@ -3,18 +3,19 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
 func main() {
-	//log.Println("Hello world")
-	lambda.Start(handler)
+	lambda.Start(hello_world_user_handler)
 }
 
-func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	//log.Println("Hello world")
+func hello_world_user_handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	log.Println("Hello world user")
+
 	var person Person
 
 	err := json.Unmarshal([]byte(request.Body), &person)

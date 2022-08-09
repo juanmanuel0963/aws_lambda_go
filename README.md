@@ -9,3 +9,9 @@ release-branch.v2
 ------------------------------
 -Added lambda function hello_world
 ------------------------------
+release-branch.v3
+-----------------
+-Third release version.
+------------------------------
+-Added lambda function hello_world_user
+------------------------------
