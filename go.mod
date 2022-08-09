@@ -1,4 +1,4 @@
-module github.com/juanmanuel0963/aws_lambda_go/v2
+module github.com/juanmanuel0963/aws_lambda_go/v3
 
 go 1.18
 
