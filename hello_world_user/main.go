@@ -10,10 +10,10 @@ import (
 )
 
 func main() {
-	lambda.Start(hello_world_user_handler)
+	lambda.Start(Handler_hello_world_user)
 }
 
-func hello_world_user_handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func Handler_hello_world_user(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	log.Println("Hello world user")
 
 	var person Person
@@ -24,10 +24,10 @@ func hello_world_user_handler(request events.APIGatewayProxyRequest) (events.API
 		return events.APIGatewayProxyResponse{}, err
 	}
 
-	msg := fmt.Sprintf("Hello %v %v", *person.FirstName, *person.LastName)
+	msg := fmt.Sprintf("Hello %v %v", person.FirstName, person.LastName)
 
 	responseBody := ResponseBody{
-		Message: &msg,
+		Message: msg,
 	}
 
 	jbytes, err := json.Marshal((responseBody))
@@ -45,10 +45,10 @@ func hello_world_user_handler(request events.APIGatewayProxyRequest) (events.API
 }
 
 type Person struct {
-	FirstName *string `json:"firstName"`
-	LastName  *string `json:"lastName"`
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
 }
 
 type ResponseBody struct {
-	Message *string `json:"message"`
+	Message string `json:"message"`
 }

@@ -8,10 +8,11 @@ import (
 )
 
 func main() {
-	lambda.Start(hello_world_handler)
+	lambda.Start(Handler_hello_world)
 }
 
-func hello_world_handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func Handler_hello_world(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+
 	log.Println("Hello world")
 
 	response := events.APIGatewayProxyResponse{
