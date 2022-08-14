@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -13,18 +14,30 @@ func main() {
 	lambda.Start(Handler_hello_world_user)
 }
 
-func Handler_hello_world_user(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func Handler_hello_world_user(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+
 	log.Println("Hello world user")
+
+	log.Println("Request: ", request)
+
+	log.Println("Request body1: ", request.Body)
+
+	log.Println("Request body2: ", []byte(request.Body))
 
 	var person Person
 
 	err := json.Unmarshal([]byte(request.Body), &person)
 
 	if err != nil {
+
+		log.Println("Request body3: ", err)
+
 		return events.APIGatewayProxyResponse{}, err
 	}
 
-	msg := fmt.Sprintf("Hello %v %v", person.FirstName, person.LastName)
+	log.Println("Request body3: ", person.FirstName, person.LastName)
+
+	msg := fmt.Sprintf("Hello %v %v ", person.FirstName, person.LastName)
 
 	responseBody := ResponseBody{
 		Message: msg,
