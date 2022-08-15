@@ -63,9 +63,28 @@ func TestSignWithRequestBody(t *testing.T) {
 		if e, a := body, bodyNew; !reflect.DeepEqual(e, a) {
 			t.Errorf("expect %v, got %v", e, a)
 		}
-
+		//----------------
 		w.WriteHeader(http.StatusOK)
+
 		fmt.Println(http.StatusOK)
+
+		//----------------
+		msg := fmt.Sprintf("Hello %v %v ", person.FirstName, person.LastName)
+
+		responseBody := ResponseBody{
+			Message: msg,
+		}
+
+		jsonBody, err := json.Marshal((responseBody))
+		if err != nil {
+			t.Errorf("Error happened in JSON marshal. Err: %s", err)
+		}
+
+		w.Write(jsonBody)
+
+		fmt.Println(jsonBody)
+
+		return
 	}))
 	defer server.Close()
 
@@ -88,11 +107,22 @@ func TestSignWithRequestBody(t *testing.T) {
 		t.Errorf("expect not no error, got %v", err)
 	}
 
-	fmt.Println(resp.Body)
-
 	//Comparisson
 	if e, a := http.StatusOK, resp.StatusCode; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
+
+	fmt.Println(resp.Body)
+
+	// Close response
+	defer resp.Body.Close()
+	//
+	var respBody ResponseBody
+	err2 := json.NewDecoder(resp.Body).Decode(&respBody)
+	if err2 != nil {
+		t.Errorf("error decoding response body %v", err2)
+	}
+	//
+	fmt.Println(respBody.Message)
 
 }

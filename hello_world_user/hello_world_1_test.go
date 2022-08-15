@@ -42,9 +42,16 @@ func TestSignWithRequestBodyTest(t *testing.T) {
 	if e, a := http.StatusOK, resp.StatusCode; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
+	// Close response
+	defer resp.Body.Close()
 	//
-	fmt.Println(resp.Body)
-
+	var respBody ResponseBody
+	err2 := json.NewDecoder(resp.Body).Decode(&respBody)
+	if err2 != nil {
+		t.Errorf("error decoding response body %v", err2)
+	}
+	//
+	fmt.Println(respBody.Message)
 }
 
 func buildRequest(serviceName, region string, body string) (*http.Request, io.ReadSeeker) {
