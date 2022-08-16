@@ -45,13 +45,13 @@ func TestSignWithRequestBody(t *testing.T) {
 		fmt.Println(string(bodyNew))
 
 		//--------------
-		var person Person
+		var personGot Person
 
-		err2 := json.Unmarshal(bodyNew, &person)
+		err2 := json.Unmarshal(bodyNew, &personGot)
 		if err2 != nil {
 			t.Errorf("expect no error, got %v", err)
 		}
-		fmt.Println(person)
+		fmt.Println(personGot)
 
 		//----------------
 		r.Body.Close()
@@ -60,9 +60,10 @@ func TestSignWithRequestBody(t *testing.T) {
 			t.Errorf("expect no error, got %v", err)
 		}
 
-		if e, a := body, bodyNew; !reflect.DeepEqual(e, a) {
+		if e, a := person, personGot; !reflect.DeepEqual(e, a) {
 			t.Errorf("expect %v, got %v", e, a)
 		}
+
 		//----------------
 		w.WriteHeader(http.StatusOK)
 
