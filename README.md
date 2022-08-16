@@ -15,3 +15,4 @@ release-branch.v3
 ------------------------------
 -Added lambda function hello_world_user
 ------------------------------
+v3.0.2 - Hello_world_user function done
