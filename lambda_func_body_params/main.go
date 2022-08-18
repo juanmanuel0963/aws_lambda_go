@@ -16,7 +16,7 @@ func main() {
 
 func Handler_lambda_func_body_params(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	log.Println("Hello world user")
+	log.Println("Hello there")
 
 	log.Println("Request: ", request)
 

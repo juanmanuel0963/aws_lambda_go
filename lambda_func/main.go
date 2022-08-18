@@ -13,7 +13,7 @@ func main() {
 
 func Handler_lambda_func(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	log.Println("Hello world")
+	log.Println("Hello there")
 
 	response := events.APIGatewayProxyResponse{
 		StatusCode: 200,
