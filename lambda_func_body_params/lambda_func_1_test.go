@@ -56,7 +56,7 @@ func Test_with_aws_signature(t *testing.T) {
 
 func buildRequest(serviceName, region string, body string) (*http.Request, io.ReadSeeker) {
 
-	endpoint := address_lambda_func_body_params
+	endpoint := url_address_lambda_func_body_params
 	request, _ := http.NewRequest("POST", endpoint, strings.NewReader(body))
 	request.Header.Set("Content-Type", "application/json")
 

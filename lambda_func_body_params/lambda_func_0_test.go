@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	address_lambda_func_body_params = "https://8syalbja7g.execute-api.us-east-1.amazonaws.com/lambda_func_body_params"
+	url_address_lambda_func_body_params = "https://8syalbja7g.execute-api.us-east-1.amazonaws.com/lambda_func_body_params"
 )
 
 //To review
@@ -33,10 +33,10 @@ func Test_without_aws_signature(t *testing.T) {
 		//POST request---------------------------------------------------
 
 		// Make request with marshalled JSON as the POST body
-		resp, err := http.Post(address_lambda_func_body_params, "application/json", bytes.NewBuffer(personJSON))
+		resp, err := http.Post(url_address_lambda_func_body_params, "application/json", bytes.NewBuffer(personJSON))
 
 		if err != nil {
-			message := "Unsuccessfull POST request to " + address_lambda_func_body_params
+			message := "Unsuccessfull POST request to " + url_address_lambda_func_body_params
 			t.Fatal(message)
 			log.Fatal(message)
 			t.Errorf(message)

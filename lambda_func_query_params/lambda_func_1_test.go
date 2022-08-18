@@ -68,7 +68,7 @@ func buildRequest(serviceName, region string, body string) (*http.Request, io.Re
 		LastName:  "Diaz",
 	}
 
-	url_query_params := fmt.Sprintf(address_lambda_func_query_params+"?firstname=%v&lastname=%v", person.FirstName, person.LastName)
+	url_query_params := fmt.Sprintf(url_address_lambda_func_query_params+"?firstname=%v&lastname=%v", person.FirstName, person.LastName)
 
 	endpoint := url_query_params
 	request, _ := http.NewRequest("POST", endpoint, strings.NewReader(body))
