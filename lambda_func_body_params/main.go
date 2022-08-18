@@ -11,10 +11,10 @@ import (
 )
 
 func main() {
-	lambda.Start(Handler_lambda_func_user)
+	lambda.Start(Handler_lambda_func_body_params)
 }
 
-func Handler_lambda_func_user(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func Handler_lambda_func_body_params(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
 	log.Println("Hello world user")
 
