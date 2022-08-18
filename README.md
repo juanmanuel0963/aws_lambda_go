@@ -7,12 +7,12 @@ release-branch.v2
 -----------------
 -Second release version.
 ------------------------------
--Added lambda function lambda_func
+-Added  lambda_func
 ------------------------------
 release-branch.v3
 -----------------
 -Third release version.
 ------------------------------
--Added lambda function lambda_func_user
+-Added  lambda_func_body_params
 ------------------------------
-v3.0.2 - lambda_func_user function done
+v3.0.3 - Added lambda_func_query_params
