@@ -6,3 +6,20 @@ $Env:GOOS = "linux"
 
 --buiild
 go build main.go
+
+----Terraform-----------
+# Run the aws configure command to set your access and secret keys
+aws configure
+aws configure --profile infra
+
+# Initialize the terraform configuration
+terraform init
+
+# Plan the terraform deployment
+terraform plan -out lambda_func.tfplan
+
+#If error raised, assign admin permisions to user account. Check this:
+#https://peaku.co/es/preguntas/20895-error:-obtener-zonas-de-disponibilidad-al-intentar-crear-un-cluster-de-eks
+
+# Apply the deployment
+terraform apply "lambda_func.tfplan"
