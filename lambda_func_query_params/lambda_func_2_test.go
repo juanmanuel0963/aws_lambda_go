@@ -17,7 +17,7 @@ import (
 
 func Test_local_server(t *testing.T) {
 	//signing credentials
-	creds := credentials.NewStaticCredentials("AKIA4A7LNDSX2Y7HIECJ", "bqF9o7EFhvhk9cvPkG8P1YOfF9hGa8E8LdgLedH5", "")
+	creds := credentials.NewStaticCredentials("ACCESS_KEY", "SECRET_KEY", "")
 	signer := v4.NewSigner(creds)
 
 	// Create a new instance of Person

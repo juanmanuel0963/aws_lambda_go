@@ -26,47 +26,47 @@ func epochTime() time.Time { return time.Unix(0, 0) }
 /*
 func TestStripExcessHeaders(t *testing.T) {
 
-	vals := []string{
-		"",
-		"123",
-		"1 2 3",
-		"1 2 3 ",
-		"  1 2 3",
-		"1  2 3",
-		"1  23",
-		"1  2  3",
-		"1  2  ",
-		" 1  2  ",
-		"12   3",
-		"12   3   1",
-		"12           3     1",
-		"12     3       1abc123",
-	}
+		vals := []string{
+			"",
+			"123",
+			"1 2 3",
+			"1 2 3 ",
+			"  1 2 3",
+			"1  2 3",
+			"1  23",
+			"1  2  3",
+			"1  2  ",
+			" 1  2  ",
+			"12   3",
+			"12   3   1",
+			"12           3     1",
+			"12     3       1abc123",
+		}
 
-	expected := []string{
-		"",
-		"123",
-		"1 2 3",
-		"1 2 3",
-		"1 2 3",
-		"1 2 3",
-		"1 23",
-		"1 2 3",
-		"1 2",
-		"1 2",
-		"12 3",
-		"12 3 1",
-		"12 3 1",
-		"12 3 1abc123",
-	}
+		expected := []string{
+			"",
+			"123",
+			"1 2 3",
+			"1 2 3",
+			"1 2 3",
+			"1 2 3",
+			"1 23",
+			"1 2 3",
+			"1 2",
+			"1 2",
+			"12 3",
+			"12 3 1",
+			"12 3 1",
+			"12 3 1abc123",
+		}
 
-	stripExcessSpaces(vals)
-	for i := 0; i < len(vals); i++ {
-		if e, a := expected[i], vals[i]; e != a {
-			t.Errorf("%d, expect %v, got %v", i, e, a)
+		stripExcessSpaces(vals)
+		for i := 0; i < len(vals); i++ {
+			if e, a := expected[i], vals[i]; e != a {
+				t.Errorf("%d, expect %v, got %v", i, e, a)
+			}
 		}
 	}
-}
 */
 func buildRequest(serviceName, region, body string) (*http.Request, io.ReadSeeker) {
 	reader := strings.NewReader(body)
@@ -114,7 +114,7 @@ func buildRequestWithBodyReader(serviceName, region string, body io.Reader) (*ht
 
 func buildSigner() v4.Signer {
 	return v4.Signer{
-		Credentials: credentials.NewStaticCredentials("AKIA4A7LNDSX2Y7HIECJ", "bqF9o7EFhvhk9cvPkG8P1YOfF9hGa8E8LdgLedH5", ""),
+		Credentials: credentials.NewStaticCredentials("ACCESS_KEY", "SECRET_KEY", ""),
 	}
 }
 
@@ -631,25 +631,25 @@ func TestSignWithRequestBody_Overwrite(t *testing.T) {
 }
 
 /*
-func TestBuildCanonicalRequest(t *testing.T) {
-	req, body := buildRequest("dynamodb", "us-east-1", "{}")
-	req.URL.RawQuery = "Foo=z&Foo=o&Foo=m&Foo=a"
-	ctx := &signingCtx{
-		ServiceName: "dynamodb",
-		Region:      "us-east-1",
-		Request:     req,
-		Body:        body,
-		Query:       req.URL.Query(),
-		Time:        time.Now(),
-		ExpireTime:  5 * time.Second,
-	}
+	func TestBuildCanonicalRequest(t *testing.T) {
+		req, body := buildRequest("dynamodb", "us-east-1", "{}")
+		req.URL.RawQuery = "Foo=z&Foo=o&Foo=m&Foo=a"
+		ctx := &signingCtx{
+			ServiceName: "dynamodb",
+			Region:      "us-east-1",
+			Request:     req,
+			Body:        body,
+			Query:       req.URL.Query(),
+			Time:        time.Now(),
+			ExpireTime:  5 * time.Second,
+		}
 
-	ctx.buildCanonicalString()
-	expected := "https://example.org/bucket/key-._~,!@#$%^&*()?Foo=z&Foo=o&Foo=m&Foo=a"
-	if e, a := expected, ctx.Request.URL.String(); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		ctx.buildCanonicalString()
+		expected := "https://example.org/bucket/key-._~,!@#$%^&*()?Foo=z&Foo=o&Foo=m&Foo=a"
+		if e, a := expected, ctx.Request.URL.String(); e != a {
+			t.Errorf("expect %v, got %v", e, a)
+		}
 	}
-}
 */
 func TestSignWithBody_ReplaceRequestBody(t *testing.T) {
 	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")

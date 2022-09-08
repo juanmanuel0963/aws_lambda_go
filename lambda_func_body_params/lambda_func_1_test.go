@@ -13,11 +13,11 @@ import (
 	v4 "github.com/aws/aws-sdk-go/aws/signer/v4"
 )
 
-//Test with AWS signature
-//How to send POST request with json body
-//https://stackoverflow.com/questions/57780438/unable-to-set-post-body-in-a-http-request
+// Test with AWS signature
+// How to send POST request with json body
+// https://stackoverflow.com/questions/57780438/unable-to-set-post-body-in-a-http-request
 func Test_with_aws_signature(t *testing.T) {
-	creds := credentials.NewStaticCredentials("AKIA4A7LNDSX2Y7HIECJ", "bqF9o7EFhvhk9cvPkG8P1YOfF9hGa8E8LdgLedH5", "")
+	creds := credentials.NewStaticCredentials("ACCESS_KEY", "ACCESS_KEY", "")
 	signer := v4.NewSigner(creds)
 
 	// Create a new instance of Person
