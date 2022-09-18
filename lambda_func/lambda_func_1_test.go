@@ -12,11 +12,11 @@ import (
 // Test with AWS signature
 func Test_with_aws_signature(t *testing.T) {
 
-	creds := credentials.NewStaticCredentials("ACCESS_KEY", "SECRET_KEY", "")
+	creds := credentials.NewStaticCredentials(ACCESS_KEY, SECRET_KEY, "")
 
 	signer := v4.NewSigner(creds)
 
-	req, err := http.NewRequest("GET", url_address_lambda_func, nil)
+	req, err := http.NewRequest("GET", SERVICE_URL, nil)
 	if err != nil {
 		t.Errorf("expect not no error, got %v", err)
 	}

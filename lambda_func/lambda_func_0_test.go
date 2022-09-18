@@ -8,10 +8,12 @@ import (
 )
 
 var (
-	url_address_lambda_func = "https://8syalbja7g.execute-api.us-east-1.amazonaws.com/lambda_func"
+	SERVICE_URL = "https://3vefaztvjh.execute-api.us-east-1.amazonaws.com/lambda_func"
+	ACCESS_KEY  = ""
+	SECRET_KEY  = ""
 )
 
-//Test without AWS Signature
+// Test without AWS Signature
 func Test_without_aws_signature(t *testing.T) {
 
 	//https://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html#sig-v4-examples-post
@@ -22,10 +24,10 @@ func Test_without_aws_signature(t *testing.T) {
 		//GET request---------------------------------------------------
 
 		client := http.Client{}
-		req, err := http.NewRequest("GET", url_address_lambda_func, nil)
+		req, err := http.NewRequest("GET", SERVICE_URL, nil)
 
 		if err != nil {
-			message := "Unsuccessfull GET request to " + url_address_lambda_func
+			message := "Unsuccessfull GET request to " + SERVICE_URL
 			t.Fatal(message)
 			log.Fatal(message)
 			t.Errorf(message)
@@ -34,7 +36,7 @@ func Test_without_aws_signature(t *testing.T) {
 		resp, err := client.Do(req)
 
 		if err != nil {
-			message := "Unsuccessfull GET request to " + url_address_lambda_func
+			message := "Unsuccessfull GET request to " + SERVICE_URL
 			t.Fatal(message)
 			log.Fatal(message)
 			t.Errorf(message)

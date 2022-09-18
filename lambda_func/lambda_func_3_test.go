@@ -15,7 +15,7 @@ import (
 )
 
 func Test_local_server(t *testing.T) {
-	creds := credentials.NewStaticCredentials("ACCESS_KEY", "SECRET_KEY", "")
+	creds := credentials.NewStaticCredentials(ACCESS_KEY, SECRET_KEY, "")
 	signer := v4.NewSigner(creds)
 
 	expectBody := []byte("abc123")

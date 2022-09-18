@@ -11,7 +11,9 @@ import (
 )
 
 var (
-	url_address_lambda_func_query_params = "https://8syalbja7g.execute-api.us-east-1.amazonaws.com/lambda_func_query_params"
+	SERVICE_URL = "https://3vefaztvjh.execute-api.us-east-1.amazonaws.com/lambda_func_query_params"
+	ACCESS_KEY  = ""
+	SECRET_KEY  = ""
 )
 
 //To review
@@ -32,13 +34,13 @@ func Test_without_aws_signature(t *testing.T) {
 
 		//POST request---------------------------------------------------
 
-		url_query_params := fmt.Sprintf(url_address_lambda_func_query_params+"?firstname=%v&lastname=%v", person.FirstName, person.LastName)
+		url_query_params := fmt.Sprintf(SERVICE_URL+"?firstname=%v&lastname=%v", person.FirstName, person.LastName)
 
 		// Make request with marshalled JSON as the POST body
 		resp, err := http.Post(url_query_params, "application/json", bytes.NewBuffer(personJSON))
 
 		if err != nil {
-			message := "Unsuccessfull POST request to " + url_address_lambda_func_query_params
+			message := "Unsuccessfull POST request to " + SERVICE_URL
 			t.Fatal(message)
 			log.Fatal(message)
 			t.Errorf(message)

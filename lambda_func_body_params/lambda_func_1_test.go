@@ -17,7 +17,7 @@ import (
 // How to send POST request with json body
 // https://stackoverflow.com/questions/57780438/unable-to-set-post-body-in-a-http-request
 func Test_with_aws_signature(t *testing.T) {
-	creds := credentials.NewStaticCredentials("ACCESS_KEY", "ACCESS_KEY", "")
+	creds := credentials.NewStaticCredentials(ACCESS_KEY, SECRET_KEY, "")
 	signer := v4.NewSigner(creds)
 
 	// Create a new instance of Person
@@ -56,7 +56,7 @@ func Test_with_aws_signature(t *testing.T) {
 
 func buildRequest(serviceName, region string, body string) (*http.Request, io.ReadSeeker) {
 
-	endpoint := url_address_lambda_func_body_params
+	endpoint := SERVICE_URL
 	request, _ := http.NewRequest("POST", endpoint, strings.NewReader(body))
 	request.Header.Set("Content-Type", "application/json")
 
